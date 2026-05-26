@@ -25,6 +25,10 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.static('public'))
 
+app.get("/", (req, res) => {
+    res.status(200).send("API is running");
+});
+
 app.use("/api/auth",authRouter)
 app.use("/api/user",userRouter)
 app.use("/api/post",postRouter)
