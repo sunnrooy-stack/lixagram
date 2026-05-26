@@ -65,9 +65,15 @@ return ()=>socketIo.close()
  },[userData])
 
 
-socket?.on("newNotification",(noti)=>{
-  dispatch(setNotificationData([...notificationData,noti]))
-})
+ useEffect(()=>{
+    if(socket) {
+      const handleNewNotification = (noti)=>{
+        dispatch(setNotificationData([...notificationData,noti]))
+      }
+      socket.on("newNotification", handleNewNotification)
+      return () => socket.off("newNotification", handleNewNotification)
+    }
+ }, [socket, notificationData, dispatch])
 
   return (
     <Routes>

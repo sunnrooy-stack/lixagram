@@ -12,7 +12,7 @@ const{ storyData,storyList}=useSelector(state=>state.story)
 const [viewed,setViewed]=useState(false)
 useEffect(()=>{
   if(story?.viewers?.some((viewer)=>
-  viewer?._id?.toString()===userData._id.toString() || viewer?.toString()==userData._id.toString()
+  viewer?._id?.toString()===userData?._id?.toString() || viewer?.toString()==userData?._id?.toString()
 )){
   setViewed(true)
 }else{

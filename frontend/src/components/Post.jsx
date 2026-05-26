@@ -75,9 +75,9 @@ socket?.on("commentedPost",(updatedData)=>{
           <div className='w-[40px] h-[40px] md:w-[60px] md:h-[60px] border-2 border-black rounded-full cursor-pointer overflow-hidden'>
             <img src={post.author?.profileImage || dp} alt="" className='w-full object-cover' />
           </div>
-          <div className='w-[150px] font-semibold truncate'>{post.author.userName}</div>
+          <div className='w-[150px] font-semibold truncate'>{post.author?.userName}</div>
         </div>
-       {userData._id!=post.author._id &&  <FollowButton tailwind={'px-[10px] minw-[60px] md:min-w-[100px] py-[5px] h-[30px] md:h-[40px] bg-[black] text-white rounded-2xl text-[14px] md:text-[16px]'} targetUserId={post.author._id}/>}
+       {userData?._id!=post.author?._id &&  <FollowButton tailwind={'px-[10px] minw-[60px] md:min-w-[100px] py-[5px] h-[30px] md:h-[40px] bg-[black] text-white rounded-2xl text-[14px] md:text-[16px]'} targetUserId={post.author?._id}/>}
        
       </div>
       <div className='w-[90%]   flex  items-center justify-center '>
@@ -97,22 +97,22 @@ socket?.on("commentedPost",(updatedData)=>{
       <div className='w-full h-[60px] flex justify-between items-center px-[20px] mt-[10px]'>
         <div className='flex justify-center items-center gap-[10px] '>
           <div className='flex justify-center items-center gap-[5px]'>
-            {!post.likes.includes(userData._id) && <GoHeart className='w-[25px] cursor-pointer h-[25px]' onClick={handleLike}/>}
-            {post.likes.includes(userData._id) && <GoHeartFill className='w-[25px] cursor-pointer h-[25px] text-red-600' onClick={handleLike}/>}
-            <span >{post.likes.length}</span>
+            {!post?.likes?.includes(userData?._id) && <GoHeart className='w-[25px] cursor-pointer h-[25px]' onClick={handleLike}/>}
+            {post?.likes?.includes(userData?._id) && <GoHeartFill className='w-[25px] cursor-pointer h-[25px] text-red-600' onClick={handleLike}/>}
+            <span >{post?.likes?.length || 0}</span>
           </div>
           <div className='flex justify-center items-center gap-[5px]' onClick={()=>setShowComment(prev=>!prev)}>
             <MdOutlineComment className='w-[25px] cursor-pointer h-[25px]' />
-            <span>{post.comments.length}</span>
+            <span>{post?.comments?.length || 0}</span>
           </div>
         </div>
         <div onClick={handleSaved}>
-          {!userData.saved.includes(post?._id) && <MdOutlineBookmarkBorder className='w-[25px] cursor-pointer h-[25px]' />}
-          {userData.saved.includes(post?._id) && <GoBookmarkFill className='w-[25px] cursor-pointer h-[25px]' />}
+          {!userData?.saved?.includes(post?._id) && <MdOutlineBookmarkBorder className='w-[25px] cursor-pointer h-[25px]' />}
+          {userData?.saved?.includes(post?._id) && <GoBookmarkFill className='w-[25px] cursor-pointer h-[25px]' />}
         </div>
       </div>
       {post.caption && <div className='w-full px-[20px] gap-[10px] flex justify-start items-center '>
-        <h1>{post.author.userName}</h1>
+        <h1>{post.author?.userName}</h1>
         <div>{post.caption}</div>
       </div>}
 
@@ -130,7 +130,7 @@ socket?.on("commentedPost",(updatedData)=>{
             {post.comments?.map((com,index)=>(
 <div key={index} className='w-full px-[20px] py-[20px]  flex items-center gap-[20px] border-b-2 border-b-gray-200'>
    <div className='w-[40px] h-[40px] md:w-[60px] md:h-[60px] border-2 border-black rounded-full cursor-pointer overflow-hidden'>
-            <img src={com.author.profileImage || dp} alt="" className='w-full object-cover' />
+            <img src={com.author?.profileImage || dp} alt="" className='w-full object-cover' />
           </div>
           <div>{com.message}</div>
 </div>

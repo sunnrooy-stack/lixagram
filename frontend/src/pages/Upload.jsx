@@ -51,6 +51,8 @@ const uploadPost=async ()=>{
        navigate("/")
     } catch (error) {
         console.log(error)
+        setLoading(false)
+        alert(error.response?.data?.message || 'Post upload failed. Please try again.')
     }
 }
 
@@ -65,6 +67,8 @@ const uploadStory=async ()=>{
        navigate("/")
     } catch (error) {
         console.log(error)
+        setLoading(false)
+        alert(error.response?.data?.message || 'Story upload failed. Please try again.')
     }
 }
 const uploadLoop=async ()=>{
@@ -78,6 +82,8 @@ const uploadLoop=async ()=>{
        navigate("/")
     } catch (error) {
         console.log(error)
+        setLoading(false)
+        alert(error.response?.data?.message || 'Loop upload failed. Please try again.')
     }
 }
 

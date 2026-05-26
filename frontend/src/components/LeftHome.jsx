@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import logo from "../assets/logo.png"
 import { FaRegHeart } from "react-icons/fa6";
 import dp from "../assets/dp.webp"
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +7,7 @@ import { serverUrl } from '../App';
 import { setUserData } from '../redux/userSlice';
 import OtherUser from './OtherUser';
 import Notifications from '../pages/Notifications';
+import lixagramLogo from "../assets/lixagram_logo.png"
 function LeftHome() {
 
     const {userData ,suggestedUsers}=useSelector(state=>state.user)
@@ -27,7 +27,7 @@ const {notificationData}=useSelector(state=>state.user)
   return (
     <div className={`w-[25%] hidden lg:block h-[100vh] bg-[black] border-r-2 border-gray-900  ${showNotification?"overflow-hidden":"overflow-auto"}`}>
       <div className='w-full h-[100px] flex items-center justify-between p-[20px]'>
-        <img src={logo} alt="" className='w-[80px]'/>
+        <img src={lixagramLogo} alt="Lixagram" className='w-[230px] object-contain' />
         <div className='relative z-[100]' onClick={()=>setShowNotification(prev=>!prev)}>
       <FaRegHeart className='text-[white] w-[25px] h-[25px]'/>
       {notificationData?.length>0 && notificationData.some((noti)=>noti.isRead===false) && (<div className='w-[10px] h-[10px] bg-blue-600 rounded-full absolute top-0 right-[-5px]'></div>)}
@@ -51,7 +51,7 @@ const {notificationData}=useSelector(state=>state.user)
 
 <div className='w-full flex flex-col gap-[20px] p-[20px]'>
     <h1 className='text-[white] text-[19px]'>Suggested Users</h1>
-    {suggestedUsers && suggestedUsers.slice(0,3).map((user,index)=>(
+    {Array.isArray(suggestedUsers) && suggestedUsers.slice(0,3).map((user,index)=>(
         <OtherUser key={index} user={user}/>
     ))}
 </div>

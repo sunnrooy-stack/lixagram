@@ -47,7 +47,7 @@ export const signIn=async (req,res)=>{
     try {
         const {password,userName}=req.body
        
-         const user=await User.findOne({userName})
+         const user=await User.findOne({userName}).populate("posts loops posts.author posts.comments story following")
         if(!user){
             return res.status(400).json({message:"User not found !"})
         }
