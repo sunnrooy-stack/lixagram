@@ -6,7 +6,11 @@ const server = http.createServer(app)
 
 const io = new Server(server, {
     cors: {
+<<<<<<< Updated upstream
         origin:/https://lixagram.onrender.com/,
+=======
+        origin: [/localhost:\d+/, "https://lixagram3.onrender.com"],
+>>>>>>> Stashed changes
         methods: ["GET", "POST"]
     }
 })
