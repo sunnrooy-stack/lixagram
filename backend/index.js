@@ -14,7 +14,7 @@ dotenv.config()
 
 const port=process.env.PORT || 5000
 app.use(cors({
-    origin:/localhost:(5173|5174)/,
+    origin:/https://lixagram.onrender.com)/,
     credentials:true
 }))
 app.use((req, res, next) => {
