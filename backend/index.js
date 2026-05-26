@@ -14,11 +14,7 @@ dotenv.config()
 
 const port=process.env.PORT || 5000
 app.use(cors({
-<<<<<<< Updated upstream
-    origin:"https://lixagram.onrender.com",
-=======
-    origin: [/localhost:(5173|5174)/, "https://lixagram3.onrender.com"],
->>>>>>> Stashed changes
+    origin: [/localhost:(5173|5174)/, "https://lixagram.onrender.com", "https://lixagram3.onrender.com"],
     credentials:true
 }))
 app.use((req, res, next) => {
