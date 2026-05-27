@@ -6,7 +6,7 @@ const server = http.createServer(app)
 
 const io = new Server(server, {
     cors: {
-        origin: [/localhost:\d+/, "https://lixagram.onrender.com"],
+        origin:"https://lixagram.onrender.com",
         methods: ["GET", "POST"]
     }
 })
